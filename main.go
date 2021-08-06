@@ -20,7 +20,7 @@ func main() {
 	}
 	log.Println(str)
 	fs := http.FileServer(http.Dir(str))
-	f := handlers.CustomLoggingHandler(os.Stdout, fs, func(writer io.Writer, params handlers.LogFormatterParams) {
+	f := handlers.CustomLoggingHandler(log.Writer(), fs, func(writer io.Writer, params handlers.LogFormatterParams) {
 		str:= fmt.Sprintf("%v %v %v %v\n",
 			params.TimeStamp.Local().Format("2006/01/02 15:04:05"),
 			params.StatusCode,
